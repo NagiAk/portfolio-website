@@ -1,8 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "react/no-unescaped-entities": 0,
-    "react-refresh/only-export-components": "warn",
-    "no-unused-vars": "warn"
+    "react/no-unescaped-entities": 0
   }
 }
