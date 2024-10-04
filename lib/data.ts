@@ -7,6 +7,7 @@ import wordanalyticsImg from "@/public/wordanalytics.png";
 import hotel from "@/public/hotel.png";
 import email from "@/public/Email.jpg";
 import clinic from "@/public/clinic.png";
+import ecommerce from "@/public/ecommerce.png";
 
 export const links = [
   {
@@ -76,6 +77,13 @@ export const projectsData = [
     tags: ["HTML", "Laravel", "Bootstrap", "MySQL", "Gmail API"],
     imageUrl: clinic,
   },
+  {
+    title: "Ecommerce Project",
+    description:
+      "A web site where user can log in and look throu our store and add products to cart to buy them .",
+    tags: ["HTML", "Laravel", "Tailwind", "MySQL", "Livewire", "Filament"],
+    imageUrl: ecommerce,
+  },
 ] as const;
 
 export const skillsData = [
@@ -90,5 +98,4 @@ export const skillsData = [
   "Git",
   "MongoDB",
   "MySQL",
-  "Python",
 ] as const;
