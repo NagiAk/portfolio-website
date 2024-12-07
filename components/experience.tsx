@@ -39,7 +39,7 @@ export default function Experience() {
               date={item.date}
               icon={item.icon}
               dateClassName="md:mr-12" 
-              className="md:ml-12"
+              className="md:ml-8 md:mr-8"
               iconStyle={{
                 background:
                   theme === "light" ? "white" : "rgba(255, 255, 255, 0.15)",
