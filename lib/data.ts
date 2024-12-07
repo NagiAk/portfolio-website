@@ -2,6 +2,7 @@ import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
+import { MdWork } from "react-icons/md";
 import rmtdevImg from "@/public/rmtdev.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
 import hotel from "@/public/hotel.png";
@@ -27,6 +28,10 @@ export const links = [
     hash: "#skills",
   },
   {
+    name: "Studies",
+    hash: "#Studies",
+  },
+  {
     name: "Experience",
     hash: "#experience",
   },
@@ -37,6 +42,25 @@ export const links = [
 ] as const;
 
 export const experiencesData = [
+  {
+    title: "CHU Fes",
+    location: "Morocco, Fes",
+    description:
+      "Created an email system for doctors to check and confirm rdvs requests.",
+    icon: React.createElement(MdWork),
+    date: "2023/03 - 2023/04",
+  },
+  {
+    title: "Screenday",
+    location: "Morocco, Fes",
+    description:
+      "Worked on maintaining an application and adding new features.",
+    icon: React.createElement(MdWork),
+    date: "2024/10 - 2024/12",
+  },
+] as const;
+
+export const studiesData = [
   {
     title: "Graduated high school",
     location: "Morocco, Fes",
