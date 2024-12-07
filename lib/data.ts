@@ -67,7 +67,7 @@ export const studiesData = [
     description:
       "I graduated after 3 years of studying. ",
     icon: React.createElement(LuGraduationCap),
-    date: "2016",
+    date: "2013 - 2016",
   },
   {
     title: "Graduated from ISTA",
