@@ -58,6 +58,14 @@ export const experiencesData = [
     icon: React.createElement(MdWork),
     date: "2024/10 - 2024/12",
   },
+  {
+    title: "Neurobase",
+    location: "Morocco",
+    description:
+      "Worked on maintaining website and adding new features.",
+    icon: React.createElement(MdWork),
+    date: "2024/12 - ongoing",
+  },
 ] as const;
 
 export const studiesData = [
@@ -102,7 +110,7 @@ export const projectsData = [
     imageUrl: clinic,
   },
   {
-    title: "Ecommerce Project",
+    title: "  ",
     description:
       "A web site where user can log in and look throu our store and add products to cart to buy them .",
     tags: ["HTML", "Laravel", "Tailwind", "MySQL", "Livewire", "Filament"],
