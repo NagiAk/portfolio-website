@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useRef, FormEvent } from "react";
-import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import { useSectionInView } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
 import SubmitBtn from "./submit-btn";
-import toast from "react-hot-toast";
 
 export default function Contact() {
   const { ref } = useSectionInView("Contact");
@@ -16,57 +15,67 @@ export default function Contact() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const { data, error } = await sendEmail(formData);
+    const { error } = await sendEmail(formData);
 
     if (error) {
       toast.error(error);
       return;
     }
 
-    toast.success("Email sent successfully!");
-
-    // Clear the input fields
+    toast.success("Message sent — merci!");
     if (emailRef.current) emailRef.current.value = "";
     if (messageRef.current) messageRef.current.value = "";
   };
 
   return (
     <motion.section
-      id="contact"
       ref={ref}
-      className="mb-20 sm:mb-28 w-[min(100%,38rem)] text-center"
+      id="contact"
+      className="mx-auto w-full max-w-[1120px] scroll-mt-28 px-5 pb-20 pt-28 text-center sm:px-10"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
       viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
     >
-      <SectionHeading>Contact me</SectionHeading>
+      <span className="eyebrow justify-center">06 — Get in touch</span>
 
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
-        <a className="underline" href="mailto:lemchiyakh@gmail.com">
+      <h2 className="mt-5 font-display text-[clamp(2.2rem,7vw,4.5rem)] font-medium leading-[1.05] tracking-tightest">
+        Let&apos;s build
+        <br />
+        <em className="italic text-clay">something</em> together.
+      </h2>
+
+      <p className="mx-auto my-7 max-w-[42ch] text-lg text-inkSoft">
+        Reach me directly at{" "}
+        <a
+          className="border-b border-clay text-clay"
+          href="mailto:lemchiyakh@gmail.com"
+        >
           lemchiyakh@gmail.com
         </a>{" "}
-        or through this form.
+        or drop a message below.
       </p>
 
-      <form className="mt-10 flex flex-col dark:text-black" onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto flex max-w-[540px] flex-col gap-4 text-left"
+      >
         <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          ref={emailRef}
           name="senderEmail"
           type="email"
           required
           maxLength={500}
           placeholder="Your email"
-          ref={emailRef}
+          className="rounded-2xl border border-line bg-card px-5 py-4 text-ink transition-all placeholder:text-muted focus:border-clay focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--clay)_30%,transparent)]"
         />
         <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          ref={messageRef}
           name="message"
-          placeholder="Your message"
           required
           maxLength={5000}
-          ref={messageRef}
+          placeholder="Your message"
+          className="min-h-[150px] resize-y rounded-2xl border border-line bg-card px-5 py-4 text-ink transition-all placeholder:text-muted focus:border-clay focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--clay)_30%,transparent)]"
         />
         <SubmitBtn />
       </form>

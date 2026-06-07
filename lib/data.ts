@@ -1,133 +1,120 @@
 import React from "react";
-import { CgWorkAlt } from "react-icons/cg";
-import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import { MdWork } from "react-icons/md";
-import rmtdevImg from "@/public/rmtdev.png";
-import wordanalyticsImg from "@/public/wordanalytics.png";
 import hotel from "@/public/hotel.png";
 import email from "@/public/Email.jpg";
 import clinic from "@/public/clinic.png";
 import ecommerce from "@/public/ecommerce.png";
 
 export const links = [
-  {
-    name: "Home",
-    hash: "#home",
-  },
-  {
-    name: "About",
-    hash: "#about",
-  },
-  {
-    name: "Projects",
-    hash: "#projects",
-  },
-  {
-    name: "Skills",
-    hash: "#skills",
-  },
-  {
-    name: "Studies",
-    hash: "#studies",
-  },
-  {
-    name: "Experience",
-    hash: "#experience",
-  },
-  {
-    name: "Contact",
-    hash: "#contact",
-  },
+  { name: "Home", hash: "#home" },
+  { name: "About", hash: "#about" },
+  { name: "Projects", hash: "#projects" },
+  { name: "Skills", hash: "#skills" },
+  { name: "Studies", hash: "#studies" },
+  { name: "Experience", hash: "#experience" },
+  { name: "Contact", hash: "#contact" },
 ] as const;
 
 export const experiencesData = [
   {
-    title: "CHU Fes",
-    location: "Morocco, Fes",
+    title: "Full-Stack Developer — Neurobase",
+    location: "Remote · Morocco",
     description:
-      "Created an email system for doctors to check and confirm rdvs requests.",
+      "Building a SaaS platform with Symfony, React and AI tooling. Design and integrate REST APIs, optimise backend logic and database performance, and build AI assistants and automation workflows that improve operational efficiency.",
     icon: React.createElement(MdWork),
-    date: "2023/03 - 2023/04",
+    date: "Dec 2024 — Present",
   },
   {
-    title: "Screenday",
-    location: "Morocco, Fes",
-    description:
-      "Worked on maintaining an application and adding new features.",
-    icon: React.createElement(MdWork),
-    date: "2024/10 - 2024/12",
-  },
-  {
-    title: "Neurobase",
+    title: "Full-Stack Developer — Screenday",
     location: "Morocco",
     description:
-      "Worked on maintaining website and adding new features.",
+      "Developed backend APIs and business features for a school-management platform, implemented mobile-integration APIs, optimised database queries and built responsive frontend interfaces.",
     icon: React.createElement(MdWork),
-    date: "2024/12 - ongoing",
+    date: "Oct 2024 — Dec 2024",
+  },
+  {
+    title: "Web Developer — CHU Fes",
+    location: "Fes, Morocco",
+    description:
+      "Built a medical appointment-management system based on doctor availability, automated scheduling and patient-data validation, and implemented notification workflows.",
+    icon: React.createElement(MdWork),
+    date: "March 2024",
   },
 ] as const;
 
 export const studiesData = [
   {
-    title: "Graduated high school",
-    location: "Morocco, Fes",
+    title: "DTS — Full-Stack Web Development",
+    location: "ISTA Al Adarissa, Fes",
     description:
-      "I graduated after 3 years of studying. ",
+      "Diploma in full-stack web development at the Institut Spécialisé de Technologie Appliquée Al Adarissa, where I built my foundation across the modern web stack.",
     icon: React.createElement(LuGraduationCap),
-    date: "2013 - 2016",
+    date: "2022 — 2024",
   },
-  {
-    title: "Graduated from ISTA",
-    location: "Morocco, Fes",
-    description:
-      "I graduated after 2 years of studyign web development. I also upskilled to the full stack thanks to it .",
-    icon: React.createElement(LuGraduationCap),
-    date: "2022 - 2024",
-  },
+] as const;
+
+export const certificationsData = [
+  { title: "Advanced React", issuer: "Meta" },
+  { title: "JavaScript Essentials 1 & 2", issuer: "Cisco Networking Academy" },
+  { title: "Introduction to Cybersecurity", issuer: "IBM · Coursera" },
+  { title: "Mastering Laravel Framework & PHP", issuer: "Board Infinity" },
 ] as const;
 
 export const projectsData = [
   {
-    title: "Hotel",
+    title: "Hotel & Restaurant Management",
     description:
-      "I worked at this project with a friend for our end year project. Users can reserve a room or a table in the hotel restaurant just via site also users that have reserved a room can order food to their room.",
-    tags: ["React", "Redux", "Laravel", "MySQL", "CSS"],
+      "Full-stack platform with multi-role authentication (User, Hotel Admin, Restaurant Admin). Built reservation and order-management features, backend APIs handling the business logic, and dynamic React interfaces.",
+    tags: ["React", "Laravel", "MySQL", "REST API"],
     imageUrl: hotel,
   },
   {
-    title: "Gestion des RDVs par email",
+    title: "Clinic Management System",
     description:
-      "I worked on this project in my 1 month internship in CHU Fes. This project allows the doctors to check and confirm the rdvs requests and sending emails ",
-    tags: ["HTML", "Laravel", "Bootstrap", "MySQL", "Gmail API"],
-    imageUrl: email,
-  },
-  {
-    title: "Clinic",
-    description:
-      "A web site for a clinic i created on my own that can handle all the things a clinic needs from confirming RDVS sending mails and managing doctors schedules.",
-    tags: ["HTML", "Laravel", "Bootstrap", "MySQL", "Gmail API"],
+      "A system for managing medical appointments and patient records, with role-based access (Admin / Doctor), automated scheduling and validation workflows that streamline consultations.",
+    tags: ["Laravel", "MySQL", "Blade", "Bootstrap"],
     imageUrl: clinic,
   },
   {
-    title: "  ",
+    title: "Medical Appointment System — CHU",
     description:
-      "A web site where user can log in and look throu our store and add products to cart to buy them .",
-    tags: ["HTML", "Laravel", "Tailwind", "MySQL", "Livewire", "Filament"],
+      "An appointment system driven by doctor availability, with automated scheduling, patient-data validation, and notification workflows that cut manual coordination.",
+    tags: ["Laravel", "MySQL", "Notifications"],
+    imageUrl: email,
+  },
+  {
+    title: "E-Commerce Platform",
+    description:
+      "A full e-commerce platform with an admin dashboard — cart, order tracking and product management, with dynamic UI in Livewire and full CRUD over products, users and orders.",
+    tags: ["Laravel", "Livewire", "Filament", "Tailwind", "MySQL"],
     imageUrl: ecommerce,
   },
 ] as const;
 
-export const skillsData = [
-  "HTML",
-  "CSS",
-  "Bootstrap",
-  "JavaScript",
-  "React",
-  "Redux",
-  "Node.js",
-  "Express",
-  "Git",
-  "MongoDB",
-  "MySQL",
+export const skillGroups = [
+  {
+    category: "Frontend",
+    items: ["React", "Next.js", "TypeScript", "Redux Toolkit", "RTK Query", "Tailwind", "Bootstrap"],
+  },
+  {
+    category: "Backend",
+    items: ["Symfony", "Laravel", "Node.js", "NestJS", "Express", "REST APIs", "SSE"],
+  },
+  {
+    category: "AI & Automation",
+    items: ["AI Assistants", "RAG Pipelines", "LLM APIs", "Prompt Engineering", "n8n"],
+  },
+  {
+    category: "Databases",
+    items: ["MySQL", "PostgreSQL", "MongoDB", "Supabase"],
+  },
+  {
+    category: "Security & Auth",
+    items: ["JWT", "2FA", "Keycloak"],
+  },
+  {
+    category: "Tools",
+    items: ["Git", "Filament", "Livewire"],
+  },
 ] as const;

@@ -1,71 +1,74 @@
 "use client";
 
-import { useRef } from "react";
-import { projectsData } from "@/lib/data";
+import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { projectsData } from "@/lib/data";
 
-type ProjectProps = (typeof projectsData)[number];
+type ProjectProps = (typeof projectsData)[number] & { index: number };
 
 export default function Project({
   title,
   description,
   tags,
   imageUrl,
+  index,
 }: ProjectProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.33 1"],
-  });
-  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const alt = index % 2 === 1;
 
   return (
     <motion.div
-      ref={ref}
-      style={{
-        scale: scaleProgess,
-        opacity: opacityProgess,
-      }}
-      className="group mb-3 sm:mb-8 last:mb-0"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="group grid grid-cols-1 items-center gap-10 border-t border-line py-12 last:border-b sm:grid-cols-2"
     >
-      <section className="bg-gray-100 max-w-[42rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] hover:bg-gray-200 transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 dark:hover:bg-white/20">
-        <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full sm:group-even:ml-[18rem]">
-          <h3 className="text-2xl font-semibold">{title}</h3>
-          <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
-            {description}
-          </p>
-          <ul className="flex flex-wrap mt-4 gap-2 sm:mt-auto">
-            {tags.map((tag, index) => (
-              <li
-                className="bg-black/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:text-white/70"
-                key={index}
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* text */}
+      <div className={alt ? "sm:order-2" : ""}>
+        <span className="font-mono text-sm text-muted">
+          0{index + 1} / 0{projectsData.length}
+        </span>
+        <h3 className="mb-4 mt-2 font-display text-[clamp(1.6rem,3.5vw,2.4rem)] font-medium leading-tight tracking-tight">
+          {title}
+        </h3>
+        <p className="mb-6 max-w-[46ch] leading-relaxed text-inkSoft">
+          {description}
+        </p>
+        <ul className="flex flex-wrap gap-2">
+          {tags.map((tag, i) => (
+            <li
+              key={i}
+              className="rounded-full border border-line bg-paper2 px-3 py-1.5 font-mono text-[0.68rem] uppercase tracking-wide text-inkSoft transition-colors group-hover:border-[color-mix(in_srgb,var(--clay)_40%,var(--line))]"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
 
+      {/* visual */}
+      <div
+        className={`relative order-first aspect-[4/3] overflow-hidden rounded-[18px] border border-line bg-card shadow-[0_18px_50px_-20px_var(--shadow)] transition-transform duration-500 ${
+          alt
+            ? "sm:order-1 group-hover:-translate-y-1.5 group-hover:rotate-1"
+            : "group-hover:-translate-y-1.5 group-hover:-rotate-1"
+        }`}
+      >
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cg fill='none' stroke='%23BC4B27' stroke-opacity='0.18' stroke-width='1'%3E%3Cpath d='M45 6l39 39-39 39L6 45z'/%3E%3Cpath d='M45 22l23 23-23 23-23-23z'/%3E%3C/g%3E%3C/svg%3E\")",
+          }}
+        />
         <Image
           src={imageUrl}
-          alt="Project I worked on"
+          alt={title}
           quality={95}
-          className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl
-        transition 
-        group-hover:scale-[1.04]
-        group-hover:-translate-x-3
-        group-hover:translate-y-3
-        group-hover:-rotate-2
-
-        group-even:group-hover:translate-x-3
-        group-even:group-hover:translate-y-3
-        group-even:group-hover:rotate-2
-
-        group-even:right-[initial] group-even:-left-40"
+          className="absolute inset-0 h-full w-full object-cover object-top"
         />
-      </section>
+      </div>
     </motion.div>
   );
 }

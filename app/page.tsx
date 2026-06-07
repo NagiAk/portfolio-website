@@ -9,7 +9,7 @@ import Studies from "@/components/studies";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center px-4">
+    <>
       <Intro />
       <SectionDivider />
       <About />
@@ -18,6 +18,6 @@ export default function Home() {
       <Studies />
       <Experience />
       <Contact />
-    </main>
+    </>
   );
 }

@@ -1,48 +1,79 @@
 "use client";
 
 import React from "react";
-import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
+import SectionHeading from "./section-heading";
 import { useSectionInView } from "@/lib/hooks";
+
+const stats = [
+  { num: "~50%", label: "Faster load times" },
+  { num: "~30%", label: "Backend perf gain" },
+  { num: "3", label: "Industries shipped" },
+];
 
 export default function About() {
   const { ref } = useSectionInView("About");
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
       id="about"
+      className="mx-auto w-full max-w-[1120px] scroll-mt-28 px-5 py-28 sm:px-10"
     >
-      <SectionHeading>About me</SectionHeading>
-      <p className="mb-3">
-        My name is Mohammed i gratuated from {" "}
-        <span className="font-medium">Institut Spécialisé de Technologie Appliquée Adarissa(ISTA)</span>, i'm so
-        passioned about programming. I learned{" "}
-        <span className="font-medium">full-stack web development</span>.{" "}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I <span className="underline">love</span> the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{" "}
-        <span className="font-medium">
-          JavaScript, React, PHP, Laravel, Node.js, MongoDB and MySQL
-        </span>
-        . I am also familiar with Python . I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">full-time position</span> as a web
-        developer.
-      </p>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        <SectionHeading number="01">About</SectionHeading>
 
-      <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        video games and listening to music  . I also enjoy{" "}
-        <span className="font-medium">learning new things</span>. I am currently
-        learning about{" "}
-        <span className="font-medium">Next.js and TypeScript</span>.
-      </p>
-    </motion.section>
+        <div className="grid grid-cols-1 items-start gap-14 sm:grid-cols-2">
+          <div className="space-y-5 text-lg text-inkSoft">
+            <p>
+              I&apos;m Mohammed — a{" "}
+              <b className="font-semibold text-ink">
+                backend &amp; AI-focused full-stack developer
+              </b>{" "}
+              based in Morocco. I build scalable SaaS platforms, REST APIs, AI
+              assistants and automation systems, and{" "}
+              <em className="italic text-clay">
+                the problem-solving is my favourite part
+              </em>{" "}
+              — that moment a stubborn bug or a slow query finally gives way.
+            </p>
+            <p>
+              I specialise in{" "}
+              <b className="font-semibold text-ink">
+                Symfony, Laravel, Node.js and React
+              </b>
+              , with AI-powered workflows like{" "}
+              <b className="font-semibold text-ink">RAG pipelines and LLM
+              integrations</b>. I&apos;ve shipped production platforms across
+              healthcare, e-commerce and management, designed secure multi-role
+              authentication, and optimised backends for real performance gains.
+              I work fluently in Arabic, French and English, and I&apos;m
+              currently going deeper with Next.js &amp; TypeScript.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {stats.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-line bg-card px-7 py-6"
+              >
+                <div className="font-display text-4xl leading-none text-clay">
+                  {s.num}
+                </div>
+                <div className="mt-2 font-mono text-xs uppercase tracking-wider text-muted">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </section>
   );
 }

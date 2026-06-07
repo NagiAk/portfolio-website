@@ -2,14 +2,223 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  --line-color: #e5e7eb;
+/* ============================================================
+   ZELLIGE PALETTE — warm clay / ink / cream + zellige teal
+   ============================================================ */
+:root {
+  --paper: #f3ede1;
+  --paper-2: #ebe1d0;
+  --paper-3: #e2d6c1;
+  --ink: #1b1714;
+  --ink-soft: #4c443a;
+  --muted: #897c6b;
+  --clay: #bc4b27;
+  --clay-deep: #98371a;
+  --teal: #1e4d45;
+  --line: rgba(27, 23, 20, 0.13);
+  --line-2: rgba(27, 23, 20, 0.07);
+  --card: #ece2d2;
+  --shadow: rgba(60, 40, 20, 0.14);
+  --grain: 0.045;
 }
 
 html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
+  --paper: #131110;
+  --paper-2: #1b1714;
+  --paper-3: #221d18;
+  --ink: #efe7d7;
+  --ink-soft: #c6baa6;
+  --muted: #8c8070;
+  --clay: #e2693e;
+  --clay-deep: #c2502b;
+  --teal: #56a99b;
+  --line: rgba(239, 231, 215, 0.13);
+  --line-2: rgba(239, 231, 215, 0.06);
+  --card: #1e1915;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --grain: 0.06;
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+  ::selection {
+    background: var(--clay);
+    color: var(--paper);
+  }
+}
+
+/* ---- grain overlay ---- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--grain);
+  transition: opacity 0.5s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- ambient atmosphere (zellige tiling + soft glows) ---- */
+.field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.field .glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+.field .g1 {
+  width: 46rem;
+  height: 46rem;
+  top: -16rem;
+  right: -12rem;
+  opacity: 0.16;
+  background: radial-gradient(circle, var(--clay) 0%, transparent 65%);
+}
+.field .g2 {
+  width: 40rem;
+  height: 40rem;
+  bottom: -14rem;
+  left: -14rem;
+  opacity: 0.13;
+  background: radial-gradient(circle, var(--teal) 0%, transparent 65%);
+}
+.field .tile {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23000' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M60 8l52 52-52 52L8 60z'/%3E%3Cpath d='M60 30l30 30-30 30-30-30z'/%3E%3C/g%3E%3C/svg%3E");
+}
+html.dark .field .tile {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='0.045' stroke-width='1'%3E%3Cpath d='M60 8l52 52-52 52L8 60z'/%3E%3Cpath d='M60 30l30 30-30 30-30-30z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---- legacy helper kept for the email template ---- */
 .borderBlack {
-  @apply border border-black/10;
+  border: 1px solid var(--line);
+}
+
+/* ---- editorial eyebrow label ---- */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--clay);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--clay);
+}
+
+/* ---- loader star draw animation ---- */
+.loader-draw path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: draw 1.7s ease forwards;
+}
+.loader-draw .star-inner {
+  animation-delay: 0.25s;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---- vertical timeline ---- */
+.tl {
+  position: relative;
+  padding-left: 2.75rem;
+}
+.tl::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(var(--clay), var(--teal));
+  opacity: 0.4;
+}
+
+/* keyframes used by arbitrary animate-[spin_..] utilities */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- live status dot ---- */
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clay);
+  animation: pulse 2.4s infinite;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--clay) 60%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 9px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* ---- scroll hint ---- */
+.scroll-bar {
+  width: 1px;
+  height: 38px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-bar::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--clay);
+  animation: drop 1.8s ease-in-out infinite;
+}
+@keyframes drop {
+  0% {
+    top: -40%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

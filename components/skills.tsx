@@ -1,52 +1,51 @@
 "use client";
 
 import React from "react";
-import SectionHeading from "./section-heading";
-import { skillsData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
 import { motion } from "framer-motion";
-
-const fadeInAnimationVariants = {
-  initial: {
-    opacity: 0,
-    y: 100,
-  },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.05 * index,
-    },
-  }),
-};
+import SectionHeading from "./section-heading";
+import { skillGroups } from "@/lib/data";
+import { useSectionInView } from "@/lib/hooks";
 
 export default function Skills() {
   const { ref } = useSectionInView("Skills");
 
   return (
     <section
-      id="skills"
       ref={ref}
-      className="mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40"
+      id="skills"
+      className="mx-auto w-full max-w-[1120px] scroll-mt-28 px-5 py-20 sm:px-10"
     >
-      <SectionHeading>My skills</SectionHeading>
-      <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
-        {skillsData.map((skill, index) => (
-          <motion.li
-            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
-            key={index}
-            variants={fadeInAnimationVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-            custom={index}
+      <SectionHeading number="03">Toolbox</SectionHeading>
+
+      <div className="space-y-7">
+        {skillGroups.map((group, gi) => (
+          <motion.div
+            key={group.category}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: gi * 0.08, duration: 0.55 }}
+            className={`grid grid-cols-1 gap-3 sm:grid-cols-[180px_1fr] sm:gap-8 ${
+              gi > 0 ? "border-t border-line pt-7" : ""
+            }`}
           >
-            {skill}
-          </motion.li>
+            <div className="pt-1 font-mono text-xs uppercase tracking-[0.18em] text-muted">
+              {group.category}
+            </div>
+            <ul className="flex flex-wrap gap-2.5">
+              {group.items.map((skill) => (
+                <li
+                  key={skill}
+                  className="group flex cursor-default items-center gap-2.5 rounded-full border border-line bg-card px-4 py-2.5 text-[0.95rem] font-medium text-ink transition-all hover:-translate-y-0.5 hover:border-clay hover:bg-[color-mix(in_srgb,var(--clay)_7%,var(--card))] hover:text-clay"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-clay" />
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

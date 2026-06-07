@@ -2,39 +2,38 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { links } from "@/lib/data";
-import Link from "next/link";
 import clsx from "clsx";
+import { links } from "@/lib/data";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import { useTheme } from "@/context/theme-context";
+import { BsMoon, BsSun } from "react-icons/bs";
+import Star from "./star";
 
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="z-[999] relative">
-      <motion.div
-        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[48rem] sm:rounded-full dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75"
-        initial={{ y: -100, x: "-50%", opacity: 0 }}
-        animate={{ y: 0, x: "-50%", opacity: 1 }}
-      ></motion.div>
+    <header className="fixed left-0 top-0 z-[800] flex w-full items-center justify-between border-b border-[var(--line-2)] bg-[color-mix(in_srgb,var(--paper)_72%,transparent)] px-5 py-3 backdrop-blur-md sm:px-10">
+      <a
+        href="#home"
+        className="flex items-center gap-2.5 font-display text-base font-semibold tracking-tight"
+      >
+        <Star className="h-[22px] w-[22px] stroke-clay" strokeWidth={5} />
+        Mohammed&nbsp;L.
+      </a>
 
-      <nav className="flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-        <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-500 sm:w-[initial] sm:flex-nowrap sm:gap-5">
+      <nav className="hidden sm:block">
+        <ul className="flex items-center gap-1">
           {links.map((link) => (
-            <motion.li
-              className="h-3/4 flex items-center justify-center relative"
-              key={link.hash}
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <Link
+            <li className="relative" key={link.hash}>
+              <a
                 className={clsx(
-                  "flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition dark:text-gray-500 dark:hover:text-gray-300",
-                  {
-                    "text-gray-950 dark:text-gray-200":
-                      activeSection === link.name,
-                  }
+                  "relative rounded-full px-3 py-2 font-mono text-[0.72rem] uppercase tracking-wider transition-colors",
+                  activeSection === link.name
+                    ? "text-clay"
+                    : "text-inkSoft hover:text-ink"
                 )}
                 href={link.hash}
                 onClick={() => {
@@ -43,23 +42,26 @@ export default function Header() {
                 }}
               >
                 {link.name}
-
-                {link.name === activeSection && (
+                {activeSection === link.name && (
                   <motion.span
-                    className="bg-gray-100 rounded-full absolute inset-0 -z-10 dark:bg-gray-800"
-                    layoutId="activeSection"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                  ></motion.span>
+                    layoutId="activePill"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 -z-10 rounded-full bg-[color-mix(in_srgb,var(--clay)_12%,transparent)]"
+                  />
                 )}
-              </Link>
-            </motion.li>
+              </a>
+            </li>
           ))}
         </ul>
       </nav>
+
+      <button
+        onClick={toggleTheme}
+        aria-label="Toggle theme"
+        className="grid h-[38px] w-[38px] place-items-center rounded-full border border-line bg-card text-ink transition-transform hover:rotate-[35deg] hover:scale-110"
+      >
+        {theme === "light" ? <BsSun /> : <BsMoon />}
+      </button>
     </header>
   );
 }

@@ -1,17 +1,33 @@
-import Header from "@/components/header";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import ActiveSectionContextProvider from "@/context/active-section-context";
+import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import Header from "@/components/header";
 import Footer from "@/components/footer";
-import ThemeSwitch from "@/components/theme-switch";
+import Loader from "@/components/loader";
+import ScrollProgress from "@/components/scroll-progress";
+import ActiveSectionContextProvider from "@/context/active-section-context";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"] });
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken",
+  display: "swap",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata = {
-  title: "Mohammed | Personal Portfolio",
-  description: "Mohammed is a full-stack developer with decent experience.",
+  title: "Mohammed Lamchiyakh — Backend & AI Engineer",
+  description:
+    "Mohammed Lamchiyakh is a backend & AI-focused full-stack developer building scalable SaaS platforms, REST APIs, and AI-powered automation.",
 };
 
 export default function RootLayout({
@@ -20,21 +36,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
-      <body
-        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
-      >
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
+    <html
+      lang="en"
+      className={`!scroll-smooth ${fraunces.variable} ${hanken.variable} ${mono.variable}`}
+    >
+      <body className="relative bg-paper font-sans text-ink antialiased">
+        {/* ambient atmosphere */}
+        <div className="field">
+          <div className="tile" />
+          <div className="glow g1" />
+          <div className="glow g2" />
+        </div>
+
+        <Loader />
+        <ScrollProgress />
 
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <Header />
-            {children}
+            <main className="relative z-[5] flex flex-col items-center">
+              {children}
+            </main>
             <Footer />
-
             <Toaster position="top-right" />
-            <ThemeSwitch />
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>

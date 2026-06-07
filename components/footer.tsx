@@ -2,14 +2,14 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="mb-10 px-4 text-center text-gray-500">
-      <small className="mb-2 block text-xs">
-        &copy; 2024 Mohammed Lamchiyakh. All rights reserved.
+    <footer className="relative z-[5] border-t border-[var(--line-2)] px-5 py-12 text-center">
+      <div className="mb-1.5 font-display text-lg">Mohammed Lamchiyakh</div>
+      <small className="block text-[0.82rem] leading-relaxed text-muted">
+        &copy; 2024 — 2026. All rights reserved.
       </small>
-      <p className="text-xs">
-        <span className="font-semibold">About this website:</span> built with
-        React & Next.js (App Router & Server Actions), TypeScript, Tailwind CSS,
-        Framer Motion, React Email & Resend, Vercel hosting.
+      <p className="mt-2.5 font-mono text-[0.7rem] tracking-wide text-muted">
+        Built with React · Next.js · TypeScript · Tailwind · Framer Motion ·
+        Resend
       </p>
     </footer>
   );

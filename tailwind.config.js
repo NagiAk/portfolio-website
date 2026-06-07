@@ -5,15 +5,33 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      // Colors are driven by CSS variables defined in globals.css,
+      // so light/dark switching happens automatically via the .dark class.
+      colors: {
+        paper: "var(--paper)",
+        paper2: "var(--paper-2)",
+        paper3: "var(--paper-3)",
+        ink: "var(--ink)",
+        inkSoft: "var(--ink-soft)",
+        muted: "var(--muted)",
+        clay: "var(--clay)",
+        clayDeep: "var(--clay-deep)",
+        teal: "var(--teal)",
+        line: "var(--line)",
+        card: "var(--card)",
+      },
+      fontFamily: {
+        display: ["var(--font-fraunces)", "Georgia", "serif"],
+        sans: ["var(--font-hanken)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
       },
     },
   },
   plugins: [],
-  darkMode: "class",
 };
