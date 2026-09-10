@@ -61,6 +61,54 @@ export const certificationsData = [
   { title: "Mastering Laravel Framework & PHP", issuer: "Board Infinity" },
 ] as const;
 
+export const flagshipProject = {
+  eyebrow: "Flagship · Production",
+  title: "Neurobase — AI Medical Reporting SaaS",
+  role: "Full-Stack Developer",
+  period: "Dec 2024 — Aug 2026 · ~2 years",
+  summary:
+    "A medical SaaS where clinicians run structured patient consultations and generate clinical reports with AI assistance. I worked across the whole stack, with the AI layer as my main focus — this is where my RAG and LLM experience comes from.",
+  ai: {
+    label: "AI & LLM engineering",
+    points: [
+      "Built conversational AI assistants with persistent thread memory, so the model holds context across an entire consultation",
+      "Implemented token-by-token SSE streaming so long clinical reports render live instead of blocking the UI",
+      "Designed retrieval & prompt pipelines that ground generated text in the clinician's own structured answers and templates",
+      "Automated anonymisation of patient identifiers before any text is sent to an LLM",
+      "Orchestrated multi-step AI workflows for automated questionnaire and template generation",
+    ],
+  },
+  platform: {
+    label: "Platform & security",
+    points: [
+      "REST APIs with Symfony & API Platform, plus role-based access control",
+      "Two-factor authentication over SMS, email and TOTP, on JWT sessions",
+      "Real-time notifications pushed over server-sent events",
+      "Encrypted patient PII at rest, with search handled in the ORM layer",
+      "Stripe subscriptions with tiered access, and Word/PDF report export",
+    ],
+  },
+  stack: [
+    "Symfony",
+    "API Platform",
+    "React",
+    "Redux Toolkit",
+    "MySQL",
+    "LLM APIs",
+    "RAG",
+    "SSE Streaming",
+    "Docker",
+    "Stripe",
+    "n8n",
+  ],
+  metrics: [
+    { num: "~2 yrs", label: "In production" },
+    { num: "~30%", label: "Backend perf gain" },
+    { num: "SSE", label: "Live AI streaming" },
+  ],
+  note: "Private commercial product — source code under NDA, so no public repo or demo.",
+} as const;
+
 export const projectsData = [
   {
     title: "Hotel & Restaurant Management",
