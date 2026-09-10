@@ -25,9 +25,39 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://mohammed-lamchiyakh.vercel.app"),
   title: "Mohammed Lamchiyakh — Backend & AI Engineer",
   description:
-    "Mohammed Lamchiyakh is a backend & AI-focused full-stack developer building scalable SaaS platforms, REST APIs, and AI-powered automation.",
+    "Mohammed Lamchiyakh is a backend & AI-focused full-stack developer building scalable SaaS platforms, REST APIs, and AI-powered automation with Symfony, Laravel, Node.js and React.",
+  keywords: [
+    "Mohammed Lamchiyakh",
+    "Backend Developer",
+    "Full-Stack Developer",
+    "AI Engineer",
+    "Symfony",
+    "Laravel",
+    "Node.js",
+    "React",
+    "Next.js",
+    "RAG",
+    "Morocco",
+  ],
+  authors: [{ name: "Mohammed Lamchiyakh" }],
+  creator: "Mohammed Lamchiyakh",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "Mohammed Lamchiyakh — Backend & AI Engineer",
+    description:
+      "Backend & AI-focused full-stack developer building scalable SaaS platforms, REST APIs, and AI-powered automation.",
+    siteName: "Mohammed Lamchiyakh",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mohammed Lamchiyakh — Backend & AI Engineer",
+    description:
+      "Backend & AI-focused full-stack developer building scalable SaaS platforms, REST APIs, and AI-powered automation.",
+  },
 };
 
 export default function RootLayout({

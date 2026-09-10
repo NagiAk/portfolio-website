@@ -34,7 +34,7 @@ export default function Intro() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: REVEAL }}
           >
-            <span className="live-dot" /> Morocco · Open to remote &amp; relocation
+            <span className="live-dot" /> Available for work · Remote or relocation
           </motion.div>
 
           <h1 className="mb-6 font-display text-[clamp(2.6rem,8.5vw,6rem)] font-normal leading-[0.98] tracking-tightest">

@@ -21,9 +21,9 @@ export const experiencesData = [
     title: "Full-Stack Developer — Neurobase",
     location: "Remote · Morocco",
     description:
-      "Building a SaaS platform with Symfony, React and AI tooling. Design and integrate REST APIs, optimise backend logic and database performance, and build AI assistants and automation workflows that improve operational efficiency.",
+      "Built a medical-SaaS platform with Symfony, React and AI tooling. Designed and integrated REST APIs, optimised backend logic and database performance, and shipped AI assistants, RAG workflows and automation that improved operational efficiency.",
     icon: React.createElement(MdWork),
-    date: "Dec 2024 — Present",
+    date: "Dec 2024 — Aug 2026",
   },
   {
     title: "Full-Stack Developer — Screenday",
